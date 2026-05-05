@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { T } from '../theme';
-import { Sidebar, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot } from '../components/Shared';
+import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot } from '../components/Shared';
 import { STUDENTS, NOTIFICATIONS } from '../data';
 import { LayoutDashboard, Calendar, BarChart3, Hand, Bell, Clock, LogOut, Award, User } from 'lucide-react';
 
@@ -12,7 +12,7 @@ const StudentDashboard = ({ student }) => (
       <StatCard label="Days Present" value="87" color="green" icon={CheckCircle} />
       <StatCard label="Days Absent" value="13" color="red" icon={Bell} />
     </div>
-    <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 18, marginBottom: 18 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 18, marginBottom: 18 }}>
       <Card>
         <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 16 }}>Attendance Calendar (April)</div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 16 }}>
@@ -75,9 +75,11 @@ const StudentPortal = ({ onLogout, mode = "student" }) => {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar items={nav} active={page} onSelect={setPage} school={school} role={mode === "student" ? "Student" : "Parent"} />
-      <div style={{ marginLeft: 220, flex: 1, background: T.surface }}>
+      <BottomNav items={nav} active={page} onSelect={setPage} />
+
+      <div className="portal-content">
         <TopBar title={nav.find(n => n.id === page)?.label || ""} subtitle={school.name} user={user} actions={<Btn variant="ghost" size="sm" onClick={onLogout} icon={<LogOut size={14} />}>Sign out</Btn>} />
-        <div style={{ padding: "24px 28px" }}>
+        <div className="portal-padding">
           {page === "dashboard" && <StudentDashboard student={student} />}
           {page === "attendance" && (
             <div style={{ animation: 'fadeIn 0.4s ease-out' }}>

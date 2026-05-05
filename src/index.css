@@ -1,1 +1,54 @@
-/* Reset or Global Styles are in App.jsx */
+/* Reset or Global Styles are in App.jsx */:root {
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --surface: #F8FAFC;
+}
+
+body {
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  overflow-x: hidden;
+  background-color: var(--surface);
+  /* Prevent scrolling pull-to-refresh on mobile */
+  overscroll-behavior-y: contain;
+}
+
+.portal-content {
+  margin-left: 220px;
+  flex: 1;
+  background: var(--surface);
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .portal-content {
+    margin-left: 0 !important;
+    padding-bottom: 80px !important; /* Space for BottomNav */
+  }
+  
+  .portal-padding {
+    padding: 16px !important;
+  }
+}
+
+.portal-padding {
+  padding: 24px 28px;
+}
+
+@media (min-width: 769px) {
+  .desktop-only { display: block !important; }
+  .mobile-only { display: none !important; }
+}
+
+@media (max-width: 768px) {
+  .desktop-only { display: none !important; }
+  .mobile-only { display: block !important; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

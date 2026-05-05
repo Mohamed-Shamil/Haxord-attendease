@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { T } from '../theme';
-import { Sidebar, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot, Modal, FormField } from '../components/Shared';
+import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot, Modal, FormField } from '../components/Shared';
 import { STUDENTS, TEACHERS, CLASSES, NOTIFICATIONS } from '../data';
 import { LayoutDashboard, Calendar, Users, GraduationCap, School, Hand, BarChart3, Bell, Palette, Settings, LogOut, Search, Plus, Filter, Download } from 'lucide-react';
 
@@ -13,7 +13,7 @@ const AdminDashboard = ({ setPage }) => (
       <StatCard label="Avg Attendance" value="87.3%" delta={1} color="amber" icon={BarChart3} />
     </div>
 
-    <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 18, marginBottom: 20 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 18, marginBottom: 20 }}>
       <Card>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
           <div style={{ fontWeight: 600, fontSize: 14 }}>Class-wise Attendance (Today)</div>
@@ -47,7 +47,7 @@ const AdminDashboard = ({ setPage }) => (
       </Card>
     </div>
 
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 18 }}>
       <Card>
         <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 14 }}>Low Attendance Watchlist</div>
         {STUDENTS.filter(s => s.attendance < 75).map(s => (
@@ -123,14 +123,16 @@ const SchoolAdminPortal = ({ onLogout }) => {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar items={nav} active={page} onSelect={setPage} school={school} role="School Admin" />
-      <div style={{ marginLeft: 220, flex: 1, background: T.surface }}>
+      <BottomNav items={nav} active={page} onSelect={setPage} />
+      
+      <div className="portal-content">
         <TopBar
           title={nav.find(n => n.id === page)?.label || "Dashboard"}
           subtitle={school.name}
           user={user}
           actions={<Btn variant="ghost" size="sm" onClick={onLogout} icon={<LogOut size={14} />}>Sign out</Btn>}
         />
-        <div style={{ padding: "24px 28px" }}>
+        <div className="portal-padding">
           {page === "dashboard" && <AdminDashboard setPage={setPage} />}
           {page === "students" && (
             <div style={{ animation: 'fadeIn 0.4s ease-out' }}>

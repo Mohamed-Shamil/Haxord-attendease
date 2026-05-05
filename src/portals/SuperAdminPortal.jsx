@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { T } from '../theme';
-import { Sidebar, TopBar, StatCard, Card, Btn, Table, Badge, Modal, FormField } from '../components/Shared';
+import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, Modal, FormField } from '../components/Shared';
 import { SCHOOLS } from '../data';
 import { LayoutDashboard, School, Users, ClipboardList, Bell, Settings, LogOut, PlusCircle, ExternalLink, Activity } from 'lucide-react';
 
@@ -12,7 +12,7 @@ const SADashboard = ({ setPage }) => (
       <StatCard label="Active Teachers" value="354" delta={5} color="amber" icon={ClipboardList} />
       <StatCard label="Monthly Revenue" value="₹82,900" delta={12} color="sky" icon={Activity} />
     </div>
-    <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 18, marginBottom: 20 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 18, marginBottom: 20 }}>
       <Card>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 14, alignItems: "center" }}>
           <div style={{ fontWeight: 600, fontSize: 14 }}>Schools Overview</div>
@@ -27,7 +27,6 @@ const SADashboard = ({ setPage }) => (
                 <div style={{ fontSize: 12, color: T.textMid }}>{s.city} &bull; {s.students} students</div>
               </div>
               <Badge color={s.status === "active" ? "green" : "amber"}>{s.status}</Badge>
-              <Badge color="sky">{s.plan}</Badge>
             </div>
           ))}
         </div>
@@ -45,19 +44,6 @@ const SADashboard = ({ setPage }) => (
             <Badge color={a.color}>{a.count}</Badge>
           </div>
         ))}
-        <div style={{ marginTop: 20 }}>
-          <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 12 }}>Plan Distribution</div>
-          {[{ plan: "Enterprise", count: 1, pct: 25 }, { plan: "Growth", count: 2, pct: 50 }, { plan: "Starter", count: 1, pct: 25 }].map(p => (
-            <div key={p.plan} style={{ marginBottom: 12 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, marginBottom: 6 }}>
-                <span style={{ color: T.textMid }}>{p.plan}</span><span style={{ fontWeight: 600 }}>{p.count} schools</span>
-              </div>
-              <div style={{ height: 6, background: T.border, borderRadius: 3 }}>
-                <div style={{ width: `${p.pct}%`, height: "100%", background: T.sky, borderRadius: 3 }} />
-              </div>
-            </div>
-          ))}
-        </div>
       </Card>
     </div>
   </div>
@@ -81,14 +67,16 @@ const SuperAdminPortal = ({ onLogout }) => {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar items={nav} active={page} onSelect={setPage} role="Super Admin" />
-      <div style={{ marginLeft: 220, flex: 1, background: T.surface }}>
+      <BottomNav items={nav} active={page} onSelect={setPage} />
+      
+      <div className="portal-content">
         <TopBar
           title={nav.find(n => n.id === page)?.label || "Dashboard"}
           subtitle="Platform Management Console"
           user={user}
           actions={<Btn variant="ghost" size="sm" onClick={onLogout} icon={<LogOut size={14} />}>Sign out</Btn>}
         />
-        <div style={{ padding: "24px 28px" }}>
+        <div className="portal-padding">
           {page === "dashboard" && <SADashboard setPage={setPage} />}
           {page === "schools" && (
             <div style={{ animation: 'fadeIn 0.4s ease-out' }}>

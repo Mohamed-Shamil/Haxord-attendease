@@ -112,7 +112,7 @@ export const Table = ({ cols, rows, onRowClick }) => (
 );
 
 export const Sidebar = ({ items, active, onSelect, school, role }) => (
-  <div style={{
+  <div className="desktop-only" style={{
     width: 220, minHeight: "100vh", background: T.navy, display: "flex", flexDirection: "column",
     position: "fixed", left: 0, top: 0, zIndex: 100,
   }}>
@@ -171,26 +171,62 @@ export const Sidebar = ({ items, active, onSelect, school, role }) => (
   </div>
 );
 
+export const BottomNav = ({ items, active, onSelect }) => (
+  <div className="mobile-only" style={{
+    position: 'fixed', bottom: 0, left: 0, right: 0,
+    background: '#fff', borderTop: `1px solid ${T.border}`,
+    display: 'flex', justifyContent: 'space-around',
+    padding: '8px 4px calc(8px + var(--safe-area-inset-bottom))',
+    zIndex: 1000,
+    boxShadow: '0 -4px 20px rgba(0,0,0,0.05)'
+  }}>
+    {items.filter(i => !i.divider).slice(0, 5).map((item, i) => (
+      <button key={i} onClick={() => onSelect(item.id)} style={{
+        background: 'none', border: 'none', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', gap: 4, color: active === item.id ? T.sky : T.textMid,
+        flex: 1, padding: '4px 0', transition: 'all 0.2s', position: 'relative'
+      }}>
+        <div style={{ 
+          color: active === item.id ? T.sky : T.textMid,
+          transform: active === item.id ? 'scale(1.1)' : 'scale(1)',
+          transition: 'transform 0.2s'
+        }}>
+          {item.icon}
+        </div>
+        <span style={{ fontSize: 10, fontWeight: active === item.id ? 600 : 500 }}>{item.label}</span>
+        {item.badge && (
+          <span style={{ 
+            position: 'absolute', top: 0, right: '25%', 
+            background: T.red, color: '#fff', borderRadius: 10, 
+            fontSize: 9, fontWeight: 700, padding: '1px 5px',
+            border: '2px solid #fff'
+          }}>{item.badge}</span>
+        )}
+      </button>
+    ))}
+  </div>
+);
+
 export const TopBar = ({ title, subtitle, actions, user }) => (
   <div style={{
     height: 60, background: T.white, borderBottom: `1px solid ${T.border}`,
     display: "flex", alignItems: "center", justifyContent: "space-between",
-    padding: "0 28px", position: "sticky", top: 0, zIndex: 50,
+    padding: "0 16px", position: "sticky", top: 0, zIndex: 50,
+    marginTop: 'var(--safe-area-inset-top)'
   }}>
-    <div>
-      <div style={{ fontSize: 16, fontWeight: 600, color: T.text }}>{title}</div>
-      {subtitle && <div style={{ fontSize: 12, color: T.textMid }}>{subtitle}</div>}
+    <div style={{ flex: 1, minWidth: 0 }}>
+      <div style={{ fontSize: 15, fontWeight: 600, color: T.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{title}</div>
+      {subtitle && <div className="desktop-only" style={{ fontSize: 12, color: T.textMid }}>{subtitle}</div>}
     </div>
-    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
       {actions}
       {user && (
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginLeft: 8 }}>
-          <div style={{ width: 32, height: 32, borderRadius: "50%", background: T.skyMuted, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: T.sky }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginLeft: 4 }}>
+          <div style={{ width: 32, height: 32, borderRadius: "50%", background: T.skyMuted, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: T.sky, flexShrink: 0 }}>
             {user.initials}
           </div>
-          <div>
+          <div className="desktop-only">
             <div style={{ fontSize: 12, fontWeight: 500, color: T.text }}>{user.name}</div>
-            <div style={{ fontSize: 11, color: T.textMid }}>{user.role}</div>
           </div>
         </div>
       )}

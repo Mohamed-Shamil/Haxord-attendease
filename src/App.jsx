@@ -64,17 +64,21 @@ const LoginScreen = ({ onLogin }) => {
             marginBottom: 20
           }}>
             <Calendar size={20} color={T.skyLight} />
-            <span style={{ color: '#fff', fontSize: 14, fontWeight: 500, letterSpacing: '0.05em' }}>ATTENDEASE V2.0</span>
+            <span style={{ color: '#fff', fontSize: 12, fontWeight: 500, letterSpacing: '0.05em' }}>ATTENDEASE V2.0</span>
           </div>
-          <h1 style={{ color: '#fff', fontSize: 42, fontWeight: 700, marginBottom: 12, letterSpacing: '-0.02em' }}>
+          <h1 style={{ color: '#fff', fontSize: 'clamp(28px, 8vw, 42px)', fontWeight: 700, marginBottom: 12, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
             Smart Attendance Management
           </h1>
-          <p style={{ color: T.slateLight, fontSize: 18, maxWidth: 500, margin: '0 auto' }}>
+          <p style={{ color: T.slateLight, fontSize: 'clamp(14px, 4vw, 18px)', maxWidth: 500, margin: '0 auto' }}>
             Unified platform for schools, teachers, and students to manage academic life seamlessly.
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 20 }}>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', 
+          gap: 'clamp(12px, 3vw, 20px)' 
+        }}>
           {roles.map((role) => (
             <Card 
               key={role.id} 
@@ -85,7 +89,7 @@ const LoginScreen = ({ onLogin }) => {
                 border: '1px solid rgba(255,255,255,0.1)',
                 backdropFilter: 'blur(10px)',
                 textAlign: 'center',
-                padding: '30px 20px',
+                padding: 'clamp(20px, 5vw, 30px) 16px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center'
@@ -105,39 +109,39 @@ const LoginScreen = ({ onLogin }) => {
               onClick={() => onLogin(role.id)}
             >
               <div style={{ 
-                width: 60, 
-                height: 60, 
-                borderRadius: 16, 
+                width: 50, 
+                height: 50, 
+                borderRadius: 14, 
                 background: `${role.color}1A`, 
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'center',
                 color: role.color,
-                marginBottom: 20,
+                marginBottom: 16,
                 border: `1px solid ${role.color}33`
               }}>
-                <role.icon size={28} />
+                <role.icon size={24} />
               </div>
-              <h3 style={{ color: '#fff', fontSize: 18, fontWeight: 600, marginBottom: 8 }}>{role.title}</h3>
-              <p style={{ color: T.slateLight, fontSize: 13, marginBottom: 20 }}>{role.desc}</p>
+              <h3 style={{ color: '#fff', fontSize: 16, fontWeight: 600, marginBottom: 6 }}>{role.title}</h3>
+              <p style={{ color: T.slateLight, fontSize: 12, marginBottom: 16 }}>{role.desc}</p>
               <div style={{ 
                 marginTop: 'auto', 
                 color: role.color, 
                 display: 'flex', 
                 alignItems: 'center', 
                 gap: 4, 
-                fontSize: 13, 
+                fontSize: 12, 
                 fontWeight: 600 
               }}>
-                Access Portal <ChevronRight size={16} />
+                Enter <ChevronRight size={14} />
               </div>
             </Card>
           ))}
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: 60 }}>
-          <p style={{ color: T.slateLight, fontSize: 12 }}>
-            Powered by <span style={{ color: '#fff', fontWeight: 600 }}>HXRD TECH</span> &bull; &copy; 2026 All Rights Reserved
+        <div style={{ textAlign: 'center', marginTop: 40 }}>
+          <p style={{ color: T.slateLight, fontSize: 11 }}>
+            Powered by <span style={{ color: '#fff', fontWeight: 600 }}>HXRD TECH</span> &bull; &copy; 2026
           </p>
         </div>
       </div>

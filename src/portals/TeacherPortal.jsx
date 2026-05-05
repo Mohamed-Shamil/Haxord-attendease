@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { T } from '../theme';
-import { Sidebar, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot, FormField } from '../components/Shared';
+import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot, FormField } from '../components/Shared';
 import { STUDENTS } from '../data';
 import { LayoutDashboard, Calendar, Users, Hand, BarChart3, Clock, LogOut, CheckCircle2 } from 'lucide-react';
 
@@ -12,7 +12,7 @@ const TeacherDashboard = ({ setPage }) => (
       <StatCard label="Pending Leaves" value="2" color="amber" icon={Hand} />
       <StatCard label="Avg Attendance" value="94%" color="green" icon={CheckCircle2} />
     </div>
-    <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 18 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 18 }}>
       <Card>
         <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 16 }}>Today's Schedule</div>
         {[
@@ -66,9 +66,11 @@ const TeacherPortal = ({ onLogout }) => {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar items={nav} active={page} onSelect={setPage} school={school} role="Teacher" />
-      <div style={{ marginLeft: 220, flex: 1, background: T.surface }}>
+      <BottomNav items={nav} active={page} onSelect={setPage} />
+      
+      <div className="portal-content">
         <TopBar title={nav.find(n => n.id === page)?.label || ""} subtitle={school.name} user={user} actions={<Btn variant="ghost" size="sm" onClick={onLogout} icon={<LogOut size={14} />}>Sign out</Btn>} />
-        <div style={{ padding: "24px 28px" }}>
+        <div className="portal-padding">
           {page === "dashboard" && <TeacherDashboard setPage={setPage} />}
           {page === "attendance" && (
             <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
