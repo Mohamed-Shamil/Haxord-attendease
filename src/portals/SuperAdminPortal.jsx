@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+import { T } from '../theme';
 import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, Modal, FormField, FAB } from '../components/Shared';
 import { SCHOOLS } from '../data';
 import { LayoutDashboard, School, Users, ClipboardList, Bell, Settings, LogOut, PlusCircle, ExternalLink, Activity, Plus } from 'lucide-react';
