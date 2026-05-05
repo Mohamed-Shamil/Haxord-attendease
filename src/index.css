@@ -11,9 +11,14 @@ body {
   user-select: none;
   overflow-x: hidden;
   background-color: var(--surface);
-  /* Prevent scrolling pull-to-refresh on mobile */
   overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
+
+/* Flutter-like scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
 
 .portal-content {
   margin-left: 220px;
@@ -26,17 +31,25 @@ body {
 @media (max-width: 768px) {
   .portal-content {
     margin-left: 0 !important;
-    padding-bottom: 80px !important; /* Space for BottomNav */
+    padding-bottom: 90px !important; 
   }
   
   .portal-padding {
-    padding: 16px !important;
+    padding: 16px 14px !important;
+  }
+
+  /* Native haptic-like click effect */
+  button:active, .clickable:active {
+    transform: scale(0.96);
+    opacity: 0.8;
   }
 }
 
 .portal-padding {
   padding: 24px 28px;
 }
+
+.clickable { cursor: pointer; transition: transform 0.1s ease; }
 
 @media (min-width: 769px) {
   .desktop-only { display: block !important; }
@@ -48,7 +61,5 @@ body {
   .mobile-only { display: block !important; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }

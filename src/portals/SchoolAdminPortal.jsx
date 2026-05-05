@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { T } from '../theme';
-import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot, Modal, FormField } from '../components/Shared';
+import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot, Modal, FormField, FAB } from '../components/Shared';
 import { STUDENTS, TEACHERS, CLASSES, NOTIFICATIONS } from '../data';
 import { LayoutDashboard, Calendar, Users, GraduationCap, School, Hand, BarChart3, Bell, Palette, Settings, LogOut, Search, Plus, Filter, Download } from 'lucide-react';
 
@@ -125,6 +125,9 @@ const SchoolAdminPortal = ({ onLogout }) => {
       <Sidebar items={nav} active={page} onSelect={setPage} school={school} role="School Admin" />
       <BottomNav items={nav} active={page} onSelect={setPage} />
       
+      {page === 'students' && <FAB icon={<Plus size={24} />} label="Add Student" onClick={() => {}} />}
+      {page === 'teachers' && <FAB icon={<Plus size={24} />} label="Add Teacher" onClick={() => {}} />}
+
       <div className="portal-content">
         <TopBar
           title={nav.find(n => n.id === page)?.label || "Dashboard"}

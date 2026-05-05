@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { T } from '../theme';
-import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot } from '../components/Shared';
+import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, AttendancePct, AttendanceDot, Modal, FAB } from '../components/Shared';
 import { STUDENTS, NOTIFICATIONS } from '../data';
-import { LayoutDashboard, Calendar, BarChart3, Hand, Bell, Clock, LogOut, Award, User } from 'lucide-react';
+import { LayoutDashboard, Calendar, BarChart3, Hand, Bell, Clock, LogOut, Award, User, Plus } from 'lucide-react';
 
 const StudentDashboard = ({ student }) => (
   <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
@@ -76,6 +76,8 @@ const StudentPortal = ({ onLogout, mode = "student" }) => {
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar items={nav} active={page} onSelect={setPage} school={school} role={mode === "student" ? "Student" : "Parent"} />
       <BottomNav items={nav} active={page} onSelect={setPage} />
+
+      {page === 'leaves' && <FAB icon={<Plus size={24} />} label="Apply Leave" onClick={() => {}} />}
 
       <div className="portal-content">
         <TopBar title={nav.find(n => n.id === page)?.label || ""} subtitle={school.name} user={user} actions={<Btn variant="ghost" size="sm" onClick={onLogout} icon={<LogOut size={14} />}>Sign out</Btn>} />

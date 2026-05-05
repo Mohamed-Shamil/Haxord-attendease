@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { T } from '../theme';
-import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, Modal, FormField } from '../components/Shared';
+import { Sidebar, BottomNav, TopBar, StatCard, Card, Btn, Table, Badge, Modal, FormField, FAB } from '../components/Shared';
 import { SCHOOLS } from '../data';
-import { LayoutDashboard, School, Users, ClipboardList, Bell, Settings, LogOut, PlusCircle, ExternalLink, Activity } from 'lucide-react';
+import { LayoutDashboard, School, Users, ClipboardList, Bell, Settings, LogOut, PlusCircle, ExternalLink, Activity, Plus } from 'lucide-react';
 
 const SADashboard = ({ setPage }) => (
   <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
@@ -69,6 +67,8 @@ const SuperAdminPortal = ({ onLogout }) => {
       <Sidebar items={nav} active={page} onSelect={setPage} role="Super Admin" />
       <BottomNav items={nav} active={page} onSelect={setPage} />
       
+      {page === 'schools' && <FAB icon={<Plus size={24} />} label="Add School" onClick={() => setModal({})} />}
+
       <div className="portal-content">
         <TopBar
           title={nav.find(n => n.id === page)?.label || "Dashboard"}
