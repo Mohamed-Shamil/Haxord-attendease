@@ -4,13 +4,13 @@ import { LayoutDashboard, School, Users, ClipboardList, Bell, Settings, LogOut, 
 
 const SADashboard = ({ setPage }) => (
   <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
-    <div style={{ display: "flex", gap: 14, marginBottom: 24, flexWrap: "wrap" }}>
-      <StatCard label="Total Schools" value="4" delta={25} color="sky" icon={School} />
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(12px, 3vw, 20px)', marginBottom: 24 }}>
+      <StatCard label="Total Schools" value="42" delta={12} color="sky" icon={School} />
       <StatCard label="Total Students" value="7,320" delta={8} color="green" icon={Users} />
       <StatCard label="Active Teachers" value="354" delta={5} color="amber" icon={ClipboardList} />
       <StatCard label="Monthly Revenue" value="₹82,900" delta={12} color="sky" icon={Activity} />
     </div>
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 18, marginBottom: 20 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18, marginBottom: 20 }}>
       <Card>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 14, alignItems: "center" }}>
           <div style={{ fontWeight: 600, fontSize: 14 }}>Schools Overview</div>

@@ -58,7 +58,7 @@ body {
 
 @media (max-width: 768px) {
   .desktop-only { display: none !important; }
-  .mobile-only { display: block !important; }
+  /* No display: block here so inline styles like display: flex work */
 }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

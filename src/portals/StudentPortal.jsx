@@ -6,13 +6,13 @@ import { LayoutDashboard, Calendar, BarChart3, Hand, Bell, Clock, LogOut, Award,
 
 const StudentDashboard = ({ student }) => (
   <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
-    <div style={{ display: "flex", gap: 14, marginBottom: 24, flexWrap: "wrap" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 14, marginBottom: 24 }}>
       <StatCard label="My Attendance" value={student.attendance + "%"} delta={2} color={student.attendance >= 80 ? "green" : "red"} icon={Calendar} />
       <StatCard label="Overall Grade" value={student.grade} color="sky" icon={Award} />
       <StatCard label="Days Present" value="87" color="green" icon={CheckCircle} />
       <StatCard label="Days Absent" value="13" color="red" icon={Bell} />
     </div>
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 18, marginBottom: 18 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18, marginBottom: 18 }}>
       <Card>
         <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 16 }}>Attendance Calendar (April)</div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 16 }}>

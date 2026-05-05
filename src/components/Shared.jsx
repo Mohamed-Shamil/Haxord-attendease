@@ -270,20 +270,20 @@ export const BottomNav = ({ items, active, onSelect }) => (
 
 export const TopBar = ({ title, subtitle, actions, user }) => (
   <div style={{
-    height: 64, background: T.white, borderBottom: `1px solid ${T.border}`,
+    height: 60, background: T.white, borderBottom: `1px solid ${T.border}`,
     display: "flex", alignItems: "center", justifyContent: "space-between",
-    padding: "0 18px", position: "sticky", top: 0, zIndex: 50,
+    padding: "0 14px", position: "sticky", top: 0, zIndex: 50,
     marginTop: 'var(--safe-area-inset-top)'
   }}>
-    <div style={{ flex: 1, minWidth: 0 }}>
-      <div style={{ fontSize: 17, fontWeight: 700, color: T.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', letterSpacing: '-0.01em' }}>{title}</div>
-      {subtitle && <div className="desktop-only" style={{ fontSize: 12, color: T.textMid }}>{subtitle}</div>}
+    <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ fontSize: 16, fontWeight: 700, color: T.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', letterSpacing: '-0.02em' }}>{title}</div>
+      {subtitle && <div className="desktop-only" style={{ fontSize: 11, color: T.textMid }}>{subtitle}</div>}
     </div>
-    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
       {actions}
       {user && (
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginLeft: 6 }}>
-          <div style={{ width: 34, height: 34, borderRadius: "50%", background: `linear-gradient(135deg, ${T.sky}, ${T.skyLight})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: '#fff', flexShrink: 0, boxShadow: '0 4px 10px rgba(14,165,233,0.2)' }}>
+        <div style={{ display: "flex", alignItems: "center", marginLeft: 4 }}>
+          <div style={{ width: 32, height: 32, borderRadius: "50%", background: `linear-gradient(135deg, ${T.sky}, ${T.skyLight})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0, boxShadow: '0 2px 8px rgba(14,165,233,0.15)' }}>
             {user.initials}
           </div>
         </div>

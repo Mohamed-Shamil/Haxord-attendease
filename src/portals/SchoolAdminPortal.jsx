@@ -6,14 +6,14 @@ import { LayoutDashboard, Calendar, Users, GraduationCap, School, Hand, BarChart
 
 const AdminDashboard = ({ setPage }) => (
   <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
-    <div style={{ display: "flex", gap: 14, marginBottom: 24, flexWrap: "wrap" }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(12px, 3vw, 20px)', marginBottom: 24 }}>
       <StatCard label="Total Students" value="1,240" delta={3} color="sky" icon={Users} />
       <StatCard label="Present Today" value="1,148" delta={2} color="green" icon={GraduationCap} />
       <StatCard label="Absent Today" value="92" color="red" icon={Users} />
       <StatCard label="Avg Attendance" value="87.3%" delta={1} color="amber" icon={BarChart3} />
     </div>
 
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 18, marginBottom: 20 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18, marginBottom: 20 }}>
       <Card>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
           <div style={{ fontWeight: 600, fontSize: 14 }}>Class-wise Attendance (Today)</div>

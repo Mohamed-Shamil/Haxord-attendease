@@ -6,13 +6,13 @@ import { LayoutDashboard, Calendar, Users, Hand, BarChart3, Clock, LogOut, Check
 
 const TeacherDashboard = ({ setPage }) => (
   <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
-    <div style={{ display: "flex", gap: 14, marginBottom: 24, flexWrap: "wrap" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 14, marginBottom: 24 }}>
       <StatCard label="My Classes" value="3" color="sky" icon={LayoutDashboard} />
       <StatCard label="Total Students" value="122" color="green" icon={Users} />
       <StatCard label="Pending Leaves" value="2" color="amber" icon={Hand} />
       <StatCard label="Avg Attendance" value="94%" color="green" icon={CheckCircle2} />
     </div>
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 18 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18 }}>
       <Card>
         <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 16 }}>Today's Schedule</div>
         {[
